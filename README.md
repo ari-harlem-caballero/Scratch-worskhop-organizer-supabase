@@ -1,25 +1,44 @@
-## The Golden Rule: 
+# Workshops List Page
 
-🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
+## HTML Setup
+- 'destination' div for all the workshops
+  - we will dynamically create workshops. Each workshop also has a list of participants. That list will _also_ need to be dynamically generated
+- link to create page
 
-If you work on more than one feature at a time, you are guaranteed to multiply your bugs and your anxiety.
+## Event
+- On load
+  - Fetch all workshops (with participants)
+    - for each workshop, 
+      - loop through participants. for each partipant, render and append participant element to workshop element
+    - render and append workshop element to list element
+- On click of participant
+  - delete the participant
+  - rerender the list
 
-## Making a plan
+# Create Page
+## HTML Setup
+- We need a form!
 
-1) **Make a drawing of your app. Simple "wireframes"**
-1) **Once you have a drawing, name the HTML elements you'll need to realize your vision**
-1) **For each HTML element ask: Why do I need this?** 
-1) **Once we know _why_ we need each element, think about how to implement the "Why" as a "How"**
-1) **Find all the 'events' (user clicks, form submit, on load etc) in your app. Ask one by one, "What happens when" for each of these events. Does any state change?**
-1) **Think about how to validate each of your features according to a Definition of Done**
-1) **Consider what features _depend_ on what other features. Use this dependency logic to figure out what order to complete tasks.**
+## Event
+- On submit
+  - Create the participant
+  - then navigate back to the workshop list
+- On load
+  - Fetch workshops from supabase
+  - Loop through workshops
+    - For each workshop, render and append an option to the dropdown
 
-Additional considerations:
-- Ask: which of your HTML elements need to be hard coded, and which need to be dynamically generated?
-- Consider your data model. 
-  - What kinds of objects (i.e., Dogs, Friends, Todos, etc) will you need? 
-  - What are the key/value pairs? 
-  - What arrays might you need? 
-  - What needs to live in a persistence layer?
-- Is there some state we need to initialize?
-- Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+## `TDD` PURE: renderParticipant(participant) : 
+  --/// returns a DOM node the participant (don't worry about this passing in github CI. 
+    ---//// Use the `skip instead of test` when you push it to github. That way github actions won't count it against you.
+    ---//// do `run the test locally` and 
+    ---//// include a `screenshot` of the passing test in your repo.
+
+## ASYNC: getWorkshops() : 
+  --/// `fetch all participants` in supabase. (These workshops are the same for everybody in the cohort and do not 'belong' to any particular user. Your participants will show up only for you)
+
+## ASYNC: createParticipant(participant) : 
+  --/// `create participant` in supabase and attach it to a workshop
+
+## ASYNC: deleteParticipant(id) : 
+  --/// `delete a participant` in supabase
