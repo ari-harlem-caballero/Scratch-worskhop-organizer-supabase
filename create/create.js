@@ -7,3 +7,6 @@ const logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
     logout();
 });
+
+//form (create new member)
+//load (dropdown, loop thru clubs)

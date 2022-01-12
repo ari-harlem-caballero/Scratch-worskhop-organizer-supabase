@@ -8,15 +8,29 @@ export async function getUser() {
 }
 
 export async function getClubs() {
+    const response = await client
+        .from('clubs')
+        .select(`*, create_member (*)`);
 
+    return response.data;
 }
 
 export async function createMember(member) {
+    const response = await client
+        .from('create_member')
+        .insert(member);
 
+    return response.data;
 }
 
-export async function deleteMember(id) {
-    
+export async function deleteMember(club_id) {
+    const response = await client
+        .from('create_member')
+        .delete()
+        .match({ id: club_id })
+        .single();
+
+    return response.data;
 }
 
 
