@@ -15,10 +15,10 @@ export async function getClubs() {
     return response.data;
 }
 
-export async function createMember(member) {
+export async function createMember(name) {
     const response = await client
         .from('create_member')
-        .insert(member);
+        .insert(name);
 
     return response.data;
 }

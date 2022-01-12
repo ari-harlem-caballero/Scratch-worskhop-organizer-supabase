@@ -11,9 +11,7 @@ logoutButton.addEventListener('click', () => {
 
 //on load: fetch/display all clubs
 window.addEventListener('load', async() => {
-    const clubs = await getClubs();
-
-    displayClubs(clubs);
+    displayClubs();
 });
 
 async function displayClubs() {
@@ -25,7 +23,7 @@ async function displayClubs() {
     for (let club of clubs) {
         //create elems (div, name, members)
         const clubDiv = document.createElement('div');
-        const nameElem = document.createElement('p');
+        const nameElem = document.createElement('h3');
         const membersElem = document.createElement('div');
         //classlists (div/members)
         clubDiv.classList.add('club-hold');
@@ -34,23 +32,24 @@ async function displayClubs() {
         nameElem.textContent = club.name;
         //-- each member: render and append to club
         clubDiv.append(nameElem, membersElem);
-
+        console.log(club);
         for (let member of club.create_member) {
             //member createElem/classList/tCont
             const singleMember = document.createElement('p');
-
+            
             singleMember.classList.add('member');
             singleMember.textContent = member.name;
             //event!! on click: delete member, re-render/call displayClubs
             singleMember.addEventListener('click', async() => {
                 await deleteMember(member.id);
-
+                
                 displayClubs();
             });
-            //append single member -> members(aka line 26)
-            clubDiv.append(singleMember);
-        }
 
+            //append single member -> members(aka line 26)
+            membersElem.append(singleMember);
+        }
+        
         //-- render/append clubs to container
         clubListElem.append(clubDiv);
     }
