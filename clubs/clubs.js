@@ -1,4 +1,4 @@
-import { checkAuth, getClubs, logout } from '../fetch-utils.js';
+import { checkAuth, deleteMember, getClubs, logout } from '../fetch-utils.js';
 
 checkAuth();
 
@@ -24,19 +24,35 @@ async function displayClubs() {
     //-- each club: loop through members (aka renderFunc)
     for (let club of clubs) {
         //create elems (div, name, members)
+        const clubDiv = document.createElement('div');
+        const nameElem = document.createElement('p');
+        const membersElem = document.createElement('div');
         //classlists (div/members)
+        clubDiv.classList.add('club-hold');
+        membersElem.classList.add('members-hold');
         //tCont (name)
-
+        nameElem.textContent = club.name;
         //-- each member: render and append to club
-        for (let member of /*booger.create_members*/) {
+        clubDiv.append(nameElem, membersElem);
+
+        for (let member of club.create_member) {
             //member createElem/classList/tCont
+            const singleMember = document.createElement('p');
 
+            singleMember.classList.add('member');
+            singleMember.textContent = member.name;
             //event!! on click: delete member, re-render/call displayClubs
+            singleMember.addEventListener('click', async() => {
+                await deleteMember(member.id);
 
+                displayClubs();
+            });
             //append single member -> members(aka line 26)
+            clubDiv.append(singleMember);
         }
 
         //-- render/append clubs to container
+        clubListElem.append(clubDiv);
     }
 
 }
