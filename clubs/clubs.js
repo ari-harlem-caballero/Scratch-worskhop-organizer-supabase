@@ -32,7 +32,7 @@ async function displayClubs() {
         nameElem.textContent = club.name;
         //-- each member: render and append to club
         clubDiv.append(nameElem, membersElem);
-        console.log(club);
+
         for (let member of club.create_member) {
             //member createElem/classList/tCont
             const singleMember = document.createElement('p');
