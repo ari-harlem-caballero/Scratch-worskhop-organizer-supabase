@@ -7,6 +7,18 @@ export async function getUser() {
     return client.auth.session();
 }
 
+export async function getClubs() {
+
+}
+
+export async function createMember(member) {
+
+}
+
+export async function deleteMember(id) {
+    
+}
+
 
 export async function checkAuth() {
     const user = await getUser();
@@ -16,7 +28,7 @@ export async function checkAuth() {
 
 export async function redirectIfLoggedIn() {
     if (await getUser()) {
-        location.replace('./workshops');
+        location.replace('./clubs');
     }
 }
 

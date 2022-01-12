@@ -8,8 +8,8 @@
 ## Event
 - On load
   - Fetch all workshops (with participants)
-    - for each workshop, 
-      - loop through participants. for each partipant, render and append participant element to workshop element
+    - for each workshop:
+      - loop through participants. for each participant, render and append participant element to workshop element
     - render and append workshop element to list element
 - On click of participant
   - delete the participant
