@@ -1,12 +1,19 @@
 import { checkAuth, deleteMember, getClubs, logout } from '../fetch-utils.js';
 
+import { renderMembers } from './render-utils.js';
+
 checkAuth();
 
 const clubListElem = document.querySelector('.clubs-container');
 const logoutButton = document.getElementById('logout');
+const addMemberButton = document.getElementById('add-member');
 
 logoutButton.addEventListener('click', () => {
     logout();
+});
+
+addMemberButton.addEventListener('click', () => {
+    window.location.href = '../create';
 });
 
 //on load: fetch/display all clubs
