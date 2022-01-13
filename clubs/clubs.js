@@ -1,4 +1,4 @@
-import { checkAuth, getClubs, logout } from '../fetch-utils.js';
+import { checkAuth, getClubs, logout, deleteMember } from '../fetch-utils.js';
 
 import { renderMember } from './render-utils.js';
 
@@ -45,6 +45,12 @@ export async function displayClubs() {
             console.log(member);
             //member createElem/classList/tCont
             const singleMember = renderMember(member);
+
+            singleMember.addEventListener('click', async() => {
+                await deleteMember(member.id);
+                        
+                displayClubs();
+            });
             //append single member -> members(aka line 26)
             membersElem.append(singleMember);
         }
