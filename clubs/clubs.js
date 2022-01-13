@@ -42,6 +42,7 @@ export async function displayClubs() {
         clubDiv.append(nameElem, membersElem);
 
         for (let member of club.create_member) {
+            console.log(member);
             //member createElem/classList/tCont
             const singleMember = renderMember(member);
             //append single member -> members(aka line 26)
