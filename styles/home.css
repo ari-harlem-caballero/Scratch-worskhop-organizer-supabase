@@ -1,1 +1,37 @@
-/* add home page styles here */
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/flower.jpg);
+    background-size: cover;
+}
+
+#add-member {
+    margin-top: 20px;
+    padding: 5px 10px;
+    background-color: #fe8548;
+    border: solid 3px #810705;
+    color: #810705;
+    font-weight: 700;
+    border-radius: 10px;
+    position: fixed;
+    right: 20px;
+    top: 30px;
+}
+
+#logout {
+    width: 60px;
+    position: fixed;
+    right: 38px;
+    top: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #810705;
+    border: none;
+    color: white;
+}
