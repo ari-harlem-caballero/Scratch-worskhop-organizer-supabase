@@ -1,6 +1,7 @@
-import { checkAuth, deleteMember, getClubs, logout } from '../fetch-utils.js';
+import { checkAuth, getClubs, logout } from '../fetch-utils.js';
 
-import { renderMembers } from './render-utils.js';
+import { renderMember } from './render-utils.js';
+
 
 checkAuth();
 
@@ -21,7 +22,7 @@ window.addEventListener('load', async() => {
     displayClubs();
 });
 
-async function displayClubs() {
+export async function displayClubs() {
     //-- fetch clubs (const/await)
     const clubs = await getClubs();
     //-- clear list
@@ -42,17 +43,7 @@ async function displayClubs() {
 
         for (let member of club.create_member) {
             //member createElem/classList/tCont
-            const singleMember = document.createElement('p');
-            
-            singleMember.classList.add('member');
-            singleMember.textContent = member.name;
-            //event!! on click: delete member, re-render/call displayClubs
-            singleMember.addEventListener('click', async() => {
-                await deleteMember(member.id);
-                
-                displayClubs();
-            });
-
+            const singleMember = renderMember(member);
             //append single member -> members(aka line 26)
             membersElem.append(singleMember);
         }
